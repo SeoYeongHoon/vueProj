@@ -1,7 +1,7 @@
 //typicode_vue.js
-const { createApp } = Vue;
+const { createApp } = Vue
 
-let template = `
+let template =`
 <div>
     <table>
         <thead>
@@ -24,26 +24,26 @@ let template = `
 `;
 
 createApp({
-    // template,
-    template: template,
-    data() {
-        return {
-            postList: [],
-        };
+  template, // 'template' : template
+  data() {
+    return {
+      postList : []
+    }
+  },
+  created(){
+    this.getPostList();
+  },
+  methods : {
+    async getPostList(){
+        this.postList = await fetch('https://jsonplaceholder.typicode.com/posts')
+                              .then(res => res.json());
     },
-    created() {
-        this.getPostList();
-    },
-    methods: {
-        async getPostList() {
-            this.postList = await fetch("https://jsonplaceholder.typicode.com/posts").then((res) => res.json());
-        },
-        getPostInfo(id) {
-            fetch("https://jsonplaceholder.typicode.com/posts/" + id)
-                .then((res) => res.json())
-                .then((data) => {
-                    console.log(data);
-                });
-        },
-    },
-}).mount("#list");
+    getPostInfo(id){
+        fetch('https://jsonplaceholder.typicode.com/posts/'+id)
+        .then(res => res.json())
+        .then(data =>{
+            console.log(data);
+        });
+    }
+  }
+}).mount('#list')

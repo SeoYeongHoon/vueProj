@@ -1,10 +1,14 @@
 //typicode.js
+document.addEventListener('DOMContentLoaded', function(){
 
-fetch('https://jsonplaceholder.typicode.com/posts')
-.then(res => res.json())
-.then(data =>{
-    createTable(data);
+    fetch('https://jsonplaceholder.typicode.com/posts')
+    .then(res => res.json())
+    .then(data =>{
+        createTable(data);
+    });
+
 });
+
 let heads = ['id', 'title', 'userId'];
 function createTable(list){
     let table = document.createElement('table');
