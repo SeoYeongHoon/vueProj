@@ -12,7 +12,7 @@ export default {
             msg: "",
         };
     },
-    created() {
+    mounted() {
         this.$refs.btn.click();
     },
     methods: {

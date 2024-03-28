@@ -11,6 +11,11 @@ let template = `
 
 export default {
     template,
+    computed: {
+        msg() {
+            return this.$refs.child.msg;
+        },
+    },
     methods: {
         changeChildData() {
             console.log(this.$refs);
