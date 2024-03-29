@@ -6,6 +6,7 @@ let template = `
         <button type="button" @click="changeChildData">Change Child Data</button>
         <button type="button" @click="clickChildEvent">Click Child Event</button>
         <button type="button" @click="executeChildFunc">Child Method Execute</button>
+        <p> {{ msg }} </p>
     </div>
 `;
 
