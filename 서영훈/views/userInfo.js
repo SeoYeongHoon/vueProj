@@ -3,24 +3,23 @@ let template = `
         <table>
             <tr>
                 <th>id</th>
-                <td>{{ postInfo.id }}</td>
+                <td>{{ userInfo.id }}</td>
             </tr>
             <tr>
-                <th>title</th>
-                <td>{{ postInfo.title }}</td>
+                <th>name</th>
+                <td>{{ userInfo.name }}</td>
             </tr>
             <tr>
-                <th>userId</th>
-                <td>{{ postInfo.userId }}</td>
+                <th>username</th>
+                <td>{{ userInfo.username }}</td>
             </tr>
             <tr>
-                <th>body</th>
-                <!-- <td><textarea readonly>{{ postInfo.body }}</textarea></td> -->
-                <td><textarea v-text="postInfo.body" readonly></textarea></td>
+                <th>email</th>
+                <td>{{ userInfo.email }}</td>
             </tr>
             <tr>
                 <button type="button" @click="goToUpdateForm()">수정</button>
-                <button type="button" @click="delPostInfo()">삭제</button>
+                <button type="button" @click="delUserInfo()">삭제</button>
             </tr>
         </table>
     </div>
@@ -30,25 +29,25 @@ export default {
     template,
     data() {
         return {
-            postInfo: {},
+            userInfo: {},
         };
     },
     created() {
         // #주의) 보내는 쪽은 $router, 받는쪽은 $route
         let id = this.$route.query.id ? this.$route.query.id : 1;
-        this.getPostInfo(id);
+        this.getUserInfo(id);
     },
     methods: {
-        async getPostInfo(id) {
-            this.postInfo = await fetch("https://jsonplaceholder.typicode.com/posts/" + id)
+        async getUserInfo(id) {
+            this.userInfo = await fetch("https://jsonplaceholder.typicode.com/users/" + id)
                 .then((res) => res.json())
                 .catch((err) => console.log(err));
         },
         goToUpdateForm() {
-            this.$router.push({ name: "postUpdate", query: { id: this.postInfo.id } });
+            this.$router.push({ name: "userUpdate", query: { id: this.userInfo.id } });
         },
-        delPostInfo() {
-            fetch("https://jsonplaceholder.typicode.com/posts/" + this.postInfo.id, {
+        delUserInfo() {
+            fetch("https://jsonplaceholder.typicode.com/users/" + this.userInfo.id, {
                 method: "DELETE",
             })
                 .then((res) => res.json())
